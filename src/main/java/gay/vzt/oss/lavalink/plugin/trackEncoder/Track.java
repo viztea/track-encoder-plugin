@@ -6,7 +6,7 @@ public record Track(
         Info info,
         String plugin,
         Map<String, Object> pluginInfo,
-        Detail[] sourceDetails,
+        Detail[] sourceInfo,
         Map<String, Object> userData
 ) {
     public record Info(

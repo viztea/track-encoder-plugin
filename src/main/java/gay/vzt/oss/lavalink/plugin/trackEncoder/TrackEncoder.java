@@ -73,15 +73,17 @@ public class TrackEncoder {
 
                 type.write(output, value);
             }
-        } else {
-            var details = track.sourceDetails();
-            if (details == null) {
-                return;
-            }
 
-            for (var detail : track.sourceDetails()) {
-                detail.type().write(output, detail.value());
-            }
+            return;
+        }
+
+        var details = track.sourceInfo();
+        if (details == null) {
+            return;
+        }
+
+        for (var detail : track.sourceInfo()) {
+            detail.type().write(output, detail.value());
         }
     }
 

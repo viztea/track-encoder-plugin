@@ -30,8 +30,11 @@ The basic track structure should look something like
 }
 ```
 
-In case you need to encode source-specific information, you may either provide a plugin preset or a list of fields to
-encode.
+> [!NOTE]  
+> The `userData` field is optional.
+
+In case you need to encode source-specific information, you may either provide a "plugin" preset or a list of source
+info fields to encode.
 
 > [!NOTE]
 > Currently, the only available presets are `lavasrc`.
@@ -73,7 +76,7 @@ plugins:
         "isPreview": false
     },
     // or
-    "sourceDetails": [
+    "sourceInfo": [
         {
             "type": "TEXT",
             "value": "..."
