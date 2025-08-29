@@ -44,7 +44,7 @@ config in your `application.yml`
 
 ```yaml
 plugins:
-  track-encoder:
+  trackEncoder:
     presets:
       - name: http
         fields:

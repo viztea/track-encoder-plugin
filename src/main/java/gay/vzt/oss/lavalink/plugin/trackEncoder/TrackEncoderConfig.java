@@ -5,8 +5,16 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@ConfigurationProperties(prefix = "plugins.track-encoder")
+@ConfigurationProperties(prefix = "plugins.trackencoder")
 @Component
 public class TrackEncoderConfig {
-    public List<PluginPreset> presets = List.of();
+    private List<PluginPreset> presets = List.of();
+
+    public List<PluginPreset> getPresets() {
+        return presets;
+    }
+
+    public void setPresets(List<PluginPreset> presets) {
+        this.presets = presets;
+    }
 }

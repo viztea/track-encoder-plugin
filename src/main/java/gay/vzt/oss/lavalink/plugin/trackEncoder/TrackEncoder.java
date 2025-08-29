@@ -22,7 +22,7 @@ public class TrackEncoder {
     private final List<PluginPreset> presets;
 
     public TrackEncoder(TrackEncoderConfig config) {
-        this.presets = new ArrayList<>(config.presets);
+        this.presets = new ArrayList<>(config.getPresets());
 
         this.presets.add(PluginPreset.LAVASRC);
     }
@@ -57,7 +57,7 @@ public class TrackEncoder {
                     .findFirst();
 
             if (preset.isEmpty()) {
-                throw new IllegalArgumentException("unknown plugin " + plugin);
+                throw new IllegalArgumentException("unknown plugin: " + plugin);
             }
 
             var info = track.pluginInfo();
