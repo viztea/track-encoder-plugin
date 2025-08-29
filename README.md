@@ -35,7 +35,8 @@ The basic track structure should look something like
 > [!NOTE]  
 > The `userData` field is optional.
 
-In case you need to encode source-specific information, you may either provide a plugin preset or a list of fields to encode.
+In case you need to encode source-specific information, you may either provide a plugin preset or a list of fields to
+encode.
 Currently, the only available presets are `lavasrc`.
 
 ```json
@@ -53,7 +54,17 @@ Currently, the only available presets are `lavasrc`.
     // or source details.
     "sourceDetails": [
         {
-            "type": "NULLABLE_TEXT" | "BOOL" | "LONG" | "FLOAT" | "DOUBLE" | "TEXT",
+            "type": "NULLABLE_TEXT"
+            |
+            "BOOL"
+            |
+            "LONG"
+            |
+            "FLOAT"
+            |
+            "DOUBLE"
+            |
+            "TEXT",
             "value": ...
         }
     ]
@@ -61,6 +72,8 @@ Currently, the only available presets are `lavasrc`.
 ```
 
 ### Usage
+
+Go to the releases page and download the plugin jar.
 
 #### `POST /v4/encodetrack`
 
