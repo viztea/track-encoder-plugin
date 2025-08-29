@@ -6,10 +6,15 @@ plugins {
 group = "gay.vzt.oss.lavalink.plugin.trackEncoder"
 version = "1.0.0"
 
+base {
+    archivesName = "track-encoder-plugin"
+}
+
 lavalinkPlugin {
-    name = "track-encoder"
+    name = "track-encoder-plugin"
     apiVersion = libs.versions.lavalink.api
     serverVersion = libs.versions.lavalink.server
+    configurePublishing = false
 }
 
 java {
@@ -22,8 +27,4 @@ tasks {
     compileJava {
         options.encoding = "UTF-8"
     }
-}
-
-dependencies {
-    // add your dependencies here
 }
