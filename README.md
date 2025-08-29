@@ -1,47 +1,103 @@
-# lavalink-plugin-template
+# Track Encoder
 
-This is a template for creating a plugin for [Lavalink](https://github.com/lavalink-devs/Lavalink). It is written in
-java, but you can also use kotlin (version `1.8.22`) if you want.
+A [lavalink](https://github.com/lavalink-devs/lavalink) plugin for
+encoding [lavaplayer](https://github.com/lavalink-devs/lavaplayer) tracks that are usually returned by /loadtracks (or
+/decodetrack).
 
-## How to use this template
+This plugin can be used to create tracks in your bot's code that can be used
 
-1. Clone this repository
-2. Rename the package `com.example.plugin` to your package name
-3. Rename the class `ExamplePlugin` to your plugin name
-4. Rename the file `ExamplePlugin.java` to your plugin name
-5. fill in the `lavalinkPlugin` in [build.gradle.kts](build.gradle.kts)
-6. Write your plugin
+## API
 
-## How to test your plugin
+This plugin offers two endpoints `/v4/encodetrack` and `/v4/encodetracks`, the latter can be used to encode multiple
+tracks at once.
 
-1. Place a `application.yml` file in the root directory (see [here](https://lavalink.dev/configuration/index.html#example-applicationyml) for an example)
-2. Run `./gradlew runLavalink` (for windows: `./gradlew.bat runLavalink`) in the root directory
-3. The plugin will be loaded
-4. You can now test your plugin
-5. If you change something in the plugin, you can just run `./gradlew runLavalink` again
+### Track Model
 
-## How to build your plugin
+The basic track structure should look something like
 
-1. Run `./gradlew build` (for windows: `./gradlew.bat build`) in the root directory
-2. The jar file will be in `build/libs/`
-
-## How to publish your plugin
-
-This template uses [jitpack](https://jitpack.io/) to publish the plugin. You just need to push your changes to github
-and jitpack will build the plugin for you.
-
-## How to use your plugin
-
-Go to [jitpack](https://jitpack.io/) and paste the link to your repository. There you can find the version you want to use.
-
-```yml
-lavalink:
-  plugins:
-    - dependency: com.github.lavalink:lavalink-plugin-template:{VERSION} # replace {VERSION} with the version you want to use from jitpack
-      repository: https://jitpack.io
+```json
+{
+    "info": {
+        "identifier": "3w3y8KPTfNeOKPiqUTakBh",
+        "author": "Bruno Mars",
+        "length": 233478,
+        "isStream": false,
+        "title": "Locked out of Heaven",
+        "uri": "https://open.spotify.com/track/3w3y8KPTfNeOKPiqUTakBh",
+        "sourceName": "spotify",
+        "position": 0,
+        "artworkUrl": "https://i.scdn.co/image/ab67616d0000b273926f43e7cce571e62720fd46",
+        "isrc": "USAT21203287"
+    }
+}
 ```
 
-## How to get help
+> [!NOTE]  
+> The `userData` field is optional.
 
-If you need help, you can join the [Lavalink Discord Server](https://discord.gg/jttmwHTAad) and ask in
-the `#plugin-dev` channel.
+In case you need to encode source-specific information, you may either provide a plugin preset or a list of fields to encode.
+Currently, the only available presets are `lavasrc`.
+
+```json
+{
+    ...,
+    "plugin": "lavasrc",
+    "pluginInfo": {
+        "albumName": "...",
+        "albumUrl": "...",
+        "artistUrl": "...",
+        "artistArtworkUrl": "...",
+        "previewUrl": "...",
+        "isPreview": false
+    },
+    // or source details.
+    "sourceDetails": [
+        {
+            "type": "NULLABLE_TEXT" | "BOOL" | "LONG" | "FLOAT" | "DOUBLE" | "TEXT",
+            "value": ...
+        }
+    ]
+}
+```
+
+### Usage
+
+#### `POST /v4/encodetrack`
+
+Request
+
+```json
+{
+    // track object
+    ...
+}
+```
+
+Response:
+
+```json
+{
+    "track": "encoded track"
+}
+```
+
+#### `POST /v4/encodetracks`
+
+Request
+
+```json
+[
+    {
+        // track object
+        ...
+    }
+]
+```
+
+```json
+{
+    "tracks": [
+        "<encoded track>"
+    ]
+}
+```

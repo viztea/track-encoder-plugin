@@ -3,11 +3,11 @@ plugins {
     alias(libs.plugins.lavalink)
 }
 
-group = "com.example"
+group = "gay.vzt.oss.lavalink.plugin.trackEncoder"
 version = "0.1.0"
 
 lavalinkPlugin {
-    name = "plugin-template"
+    name = "track-encoder"
     apiVersion = libs.versions.lavalink.api
     serverVersion = libs.versions.lavalink.server
 }
