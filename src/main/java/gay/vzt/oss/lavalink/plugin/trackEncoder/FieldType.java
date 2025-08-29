@@ -20,6 +20,11 @@ public enum FieldType {
     }
 
     public void write(DataOutput output, Object value) throws IOException {
+        // type nullability check.
+        if (!isNullable && value == null) {
+            throw new IllegalArgumentException("value must not be null");
+        }
+
         switch (this) {
             case TEXT -> output.writeUTF(value.toString());
             case LONG -> {

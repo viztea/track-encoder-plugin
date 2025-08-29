@@ -63,15 +63,7 @@ public class TrackEncoder {
             var info = track.pluginInfo();
             for (var field : preset.get().fields()) {
                 var type = field.type();
-
-                var value = info.get(field.name());
-
-                // type nullability check.
-                if (!type.isNullable && value == null) {
-                    throw new IllegalArgumentException("field " + field.name() + " is null");
-                }
-
-                type.write(output, value);
+                type.write(output, info.get(field.name()));
             }
 
             return;
@@ -82,8 +74,8 @@ public class TrackEncoder {
             return;
         }
 
-        for (var detail : track.sourceInfo()) {
-            detail.type().write(output, detail.value());
+        for (var field : track.sourceInfo()) {
+            field.type().write(output, field.value());
         }
     }
 
