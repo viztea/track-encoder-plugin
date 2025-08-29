@@ -117,7 +117,7 @@ Response:
 
 ```json
 {
-    "track": "encoded track"
+    "value": "encoded track"
 }
 ```
 
@@ -135,7 +135,7 @@ Request
 
 ```json
 {
-    "tracks": [
+    "value": [
         "<encoded track>"
     ]
 }
