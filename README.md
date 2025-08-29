@@ -30,9 +30,6 @@ The basic track structure should look something like
 }
 ```
 
-> [!NOTE]  
-> The `userData` field is optional.
-
 In case you need to encode source-specific information, you may either provide a "plugin" preset or a list of source
 info fields to encode.
 
@@ -43,6 +40,8 @@ info fields to encode.
 <details>
 <summary>Custom plugin presets</summary>
 
+config in your `application.yml`
+
 ```yaml
 plugins:
   track-encoder:
@@ -52,6 +51,8 @@ plugins:
           - name: probeInfo
             type: TEXT
 ```
+
+request body for `/encodetrack(s)`
 
 ```json
 {
