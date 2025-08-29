@@ -91,7 +91,14 @@ request body for `/encodetrack(s)`
 
 ### Usage
 
-Go to the releases page and download the plugin jar.
+Go to the [releases page](/releases) and download the plugin jar or place this in your application.yml
+
+```yaml
+lavalink:
+    plugins:
+      - dependency: "com.github.viztea:track-encoder-plugin:1.0.0"
+        repository: "https://jitpack.io"
+```
 
 #### `POST /v4/encodetrack`
 
