@@ -1,10 +1,11 @@
 plugins {
     java
+    `maven-publish`
     alias(libs.plugins.lavalink)
 }
 
 group = "gay.vzt.oss.lavalink.plugin.trackEncoder"
-version = "1.0.0"
+version = "1.0.1"
 
 base {
     archivesName = "track-encoder-plugin"
@@ -26,5 +27,14 @@ java {
 tasks {
     compileJava {
         options.encoding = "UTF-8"
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+            artifactId = base.archivesName.get()
+        }
     }
 }
