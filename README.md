@@ -4,8 +4,6 @@ A [lavalink](https://github.com/lavalink-devs/lavalink) plugin for
 encoding [lavaplayer](https://github.com/lavalink-devs/lavaplayer) tracks that are usually returned by
 `/v4/loadtracks` (or `/v4/decodetrack`).
 
-This plugin can be used to create tracks in your bot's code that can be used
-
 ## API
 
 This plugin offers two endpoints: `/v4/encodetrack` and `/v4/encodetracks`, the latter is available for encoding
