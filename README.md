@@ -8,8 +8,8 @@ This plugin can be used to create tracks in your bot's code that can be used
 
 ## API
 
-This plugin offers two endpoints `/v4/encodetrack` and `/v4/encodetracks`, the latter can be used to encode multiple
-tracks at once.
+This plugin offers two endpoints: `/v4/encodetrack` and `/v4/encodetracks`, the latter is available for encoding
+multiple track objects at once.
 
 ### Track Model
 
@@ -37,7 +37,34 @@ The basic track structure should look something like
 
 In case you need to encode source-specific information, you may either provide a plugin preset or a list of fields to
 encode.
-Currently, the only available presets are `lavasrc`.
+
+> [!NOTE]
+> Currently, the only available presets are `lavasrc`.
+> However, you may provide custom presets in your `application.yml` file.
+
+<details>
+<summary>Custom plugin presets</summary>
+
+```yaml
+plugins:
+  track-encoder:
+    presets:
+      - name: http
+        fields:
+          - name: probeInfo
+            type: TEXT
+```
+
+```json
+{
+    "plugin": "http",
+    "pluginInfo": {
+        "probeInfo": "mp3"
+    }
+}
+```
+
+</details>
 
 ```json5
 {
