@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: track-encoder-plugin.jar
-          path: plugin/build/libs/track-encoder-plugin-*.jar
+          path: build/libs/track-encoder-plugin-*.jar
 
   release:
     needs: build
