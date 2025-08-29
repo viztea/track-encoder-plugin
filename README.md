@@ -1,8 +1,8 @@
 # Track Encoder
 
 A [lavalink](https://github.com/lavalink-devs/lavalink) plugin for
-encoding [lavaplayer](https://github.com/lavalink-devs/lavaplayer) tracks that are usually returned by /loadtracks (or
-/decodetrack).
+encoding [lavaplayer](https://github.com/lavalink-devs/lavaplayer) tracks that are usually returned by
+`/v4/loadtracks` (or `/v4/decodetrack`).
 
 This plugin can be used to create tracks in your bot's code that can be used
 
@@ -39,9 +39,8 @@ In case you need to encode source-specific information, you may either provide a
 encode.
 Currently, the only available presets are `lavasrc`.
 
-```json
+```json5
 {
-    ...,
     "plugin": "lavasrc",
     "pluginInfo": {
         "albumName": "...",
@@ -51,25 +50,18 @@ Currently, the only available presets are `lavasrc`.
         "previewUrl": "...",
         "isPreview": false
     },
-    // or source details.
+    // or
     "sourceDetails": [
         {
-            "type": "NULLABLE_TEXT"
-            |
-            "BOOL"
-            |
-            "LONG"
-            |
-            "FLOAT"
-            |
-            "DOUBLE"
-            |
-            "TEXT",
-            "value": ...
+            "type": "TEXT",
+            "value": "..."
         }
     ]
 }
 ```
+
+> [!NOTE]
+> Supported field types: `NULLABLE_TEXT`, `BOOL`, `LONG`, `FLOAT`, `DOUBLE`, or `TEXT`
 
 ### Usage
 
@@ -79,10 +71,9 @@ Go to the releases page and download the plugin jar.
 
 Request
 
-```json
+```json5
 {
     // track object
-    ...
 }
 ```
 
@@ -98,11 +89,10 @@ Response:
 
 Request
 
-```json
+```json5
 [
     {
         // track object
-        ...
     }
 ]
 ```
