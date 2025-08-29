@@ -1,3 +1,5 @@
+import java.io.ByteArrayOutputStream
+
 plugins {
     java
     `maven-publish`
@@ -5,7 +7,11 @@ plugins {
 }
 
 group = "gay.vzt.oss.lavalink.plugin.trackEncoder"
-version = "1.0.1"
+
+val (versionStr, isSnapshot) = getGitVersion()
+version = versionStr
+
+println("Version: $versionStr")
 
 base {
     archivesName = "track-encoder-plugin"
@@ -37,4 +43,27 @@ publishing {
             artifactId = base.archivesName.get()
         }
     }
+}
+
+fun getGitVersion(): Pair<String, Boolean> {
+    var versionStr = ByteArrayOutputStream()
+    val result = exec {
+        standardOutput = versionStr
+        errorOutput = versionStr
+        isIgnoreExitValue = true
+        commandLine = listOf("git", "describe", "--exact-match", "--tags")
+    }
+
+    if (result.exitValue == 0) {
+        return versionStr.toString().trim() to false
+    }
+
+    versionStr = ByteArrayOutputStream()
+    exec {
+        standardOutput = versionStr
+        errorOutput = versionStr
+        commandLine = listOf("git", "rev-parse", "--short", "HEAD")
+    }
+
+    return versionStr.toString().trim() to true
 }
