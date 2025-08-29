@@ -30,9 +30,6 @@ The basic track structure should look something like
 }
 ```
 
-> [!NOTE]  
-> The `userData` field is optional.
-
 In case you need to encode source-specific information, you may either provide a plugin preset or a list of fields to
 encode.
 
