@@ -1,1 +1,1 @@
-rootProject.name = "lavalink-plugin-template"
+rootProject.name = "track-encoder-plugin"
